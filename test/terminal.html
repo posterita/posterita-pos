@@ -1,0 +1,119 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/onsenui.css">
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="login.css">
+    
+    <style type="text/css">
+    
+   select {    
+    	display: block;
+    	width: 100%;
+    	padd
+    
+    }
+        
+    select,  option {
+    	padding: 4px;
+    	font-size: 20px;
+    }
+    
+    </style>
+
+    <script src="js/angular/angular.js"></script>
+    <script src="js/jquery.js"></script>
+    
+    <script src="js/onsenui.js"></script>
+    <script>
+      ons.bootstrap();
+      
+      $(function(){
+    	  $('.configure-button').click(function(e){
+    		  
+    		  /*
+    		  ons.notification.alert({
+    			  message: 'Message',
+    			  // or messageHTML: '<div>Message in HTML</div>',
+    			  title: 'Dialog Title',
+    			  buttonLabel: 'OK',
+    			  animation: 'default', // or 'none'
+    			  // modifier: 'optional-modifier'
+    			  callback: function() {
+    			    // Alert button is closed!
+    			  }
+    			});
+    		  */
+    		  
+    		  modal.show();
+   		   //setTimeout('modal.hide()', 2000);
+   		   
+   		   setTimeout(function(){
+   			   
+   			   window.location.href = "sales.html";
+   			   
+   		   }, 2000);
+    		  
+    	  });
+      });
+    </script>
+  </head>
+  <body>
+  
+  <ons-modal var="modal">
+	  <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+	  <br>
+	  <br> Please wait.
+	</ons-modal>
+	
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Configure Terminal</div>
+        <div class="right"><ons-toolbar-button>Close</ons-toolbar-button></div>
+      </ons-toolbar>
+
+      <div class="login-form">
+
+        <div class="button--large" style="padding-left: 0px; padding-right: 0px;">Truck</div>        
+        <select class="truck-list">
+        	<option>1</option>
+        	<option>1</option>
+        </select>
+        
+        <br><br>
+        
+        <div class="button--large" style="padding-left: 0px; padding-right: 0px;">Terminal</div>        
+        <select class="terminal-list">
+        	<option>1</option>
+        	<option>1</option>
+        </select>
+        
+        <br><br>
+        <ons-button modifier="large" class="configure-button">Configure</ons-button>
+      </div>
+
+    </ons-page>
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-dialog var="create_item_dialog_global" style="top:220px;width:630px;">
+ 
+	 <ons-toolbar inline>
+	     <div class="center">
+	       <strong>Create Item</strong>
+	     </div>
+	 </ons-toolbar>
+	 
+	 <div ng-controller="CreateItemDialogController as ctrl">
+	 <form novalidate="novalidate" autocomplete="off" name="create-product-form" class="form-default" style="margin: 20px;">
+	 <table width="100%">
+	 	<thead>
+	 		<tr>
+	 			<th colspan="3">Barcode : {{ctrl.item.upc}}</th>
+	 		</tr>
+	 	</thead>
+	 	<tbody>
+	 		<tr>
+	 			<td colspan="2">Item Name</td>
+	 			<td>Item Category</td>
+	 		</tr>
+	 		<tr>
+	 			<td colspan="2"><input id="create_item_dialog_name" type="text" focus ng-model="ctrl.item.name" ng-virtual-keyboard="{}" style="width:382px;" required/></td>
+	 			<td>
+	 				<select ng-model="ctrl.item.productcategory_id" style="width: 180px;" required>
+        				<option ng-repeat="category in ctrl.categoryList" value="{{ category.productcategory_id }}">{{category.name}}</option>
+        			</select>
+        		</td>
+	 			
+	 		</tr>
+	 		<tr>
+	 			<td>Selling Price</td>
+	 			<td>Cost Price</td>
+	 			<td>Tax</td>
+	 		</tr>
+	 		<tr>
+	 			<td><input type="text" ng-model="ctrl.item.sellingprice" ng-virtual-keyboard="{kt:'Numeric', customClass:'keyboardNumeric'}" style="width: 180px;" required/></td>
+	 			<td><input type="text" ng-model="ctrl.item.costprice" ng-virtual-keyboard="{kt:'Numeric', customClass:'keyboardNumeric'}" style="width: 180px;" required/></td>
+	 			<td>
+		 			<select ng-model="ctrl.item.tax_id" style="width: 180px;" required ng-options="tax.tax_id as tax.name for tax in ctrl.taxList">		        		
+		        	</select>
+	        	</td>
+	 		</tr>
+	 		<tr>
+	 			<td colspan="3">&nbsp;</td>
+	 		</tr>
+	 		<tr>
+	 			<td><ons-button class="button--large button--outline" ng-click="ctrl.closeDialog()">Cancel</ons-button></td>
+	 			<td>&nbsp;</td>
+	 			<td><ons-button class="button--large" ng-click="ctrl.createItem()">Create</ons-button></td>
+	 		</tr>
+	 	</tbody>
+	 </table>
+	 
+	</form>	 
+	 </div>
+	 
+</ons-dialog>

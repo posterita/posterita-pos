@@ -1,0 +1,137 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-page ng-controller="TillController as ctrl"> 
+	<ons-toolbar fixed-style>
+		<div class="left">
+			<ons-toolbar-button ng-click="menu.setMainPage('page/till.html', {closeMenu: true})">
+			<ons-icon icon="ion-ios-arrow-back"></ons-icon>Back
+			</ons-toolbar-button>
+		</div>		
+		<div class="center">Cash Up</div>
+	</ons-toolbar>
+
+	<form novalidate="novalidate" autocomplete="off" name="form" class="form-default">
+	<!-- 
+	<div class="input-group">
+		<h2>{{ ctrl.today | date:'fullDate' }}</h2>
+	</div>
+	
+	<div class="input-group">
+		<label>{{ctrl.terminalInfo}}</label>
+	</div>
+		
+	<div class="input-group">
+		<label>Opening Date : {{ ctrl.till.openingdate |  date:'medium' }}</label>
+	</div>
+	
+	<div class="input-group">
+		<label>Opening Amount : {{ ctrl.till.openingamt |  number:2 }}</label>
+	</div>
+	
+	<div class="input-group" ng-show="ctrl.showCloseTillError">
+		<label style="color:red">Expected : {{ ctrl.expectedAmt | number:2 }}</label>
+	</div>
+	
+	<div class="input-group">&nbsp;</div>
+	-->
+	
+	<div class="input-group">
+		<label>Enter Closing Amount*</label>
+		<input type="text" step="any" ng-model="ctrl.amount" name="amount" required="required" id="close-till-amount" ng-enter="form.$valid ? closeTill(ctrl.amount) : void(0)" autofocus>
+	</div>
+	
+	<div class="numeric-keypad">
+		<table>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('1')">1</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('2')">2</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('3')">3</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('backspace')">
+						<ons-icon icon="ion-backspace"></ons-icon>
+					</ons-button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('4')">4</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('5')">5</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('6')">6</ons-button>
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('7')">7</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('8')">8</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('9')">9</ons-button>
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('0')">0</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('00')">00</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('.')">.</ons-button>
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="input-group">
+		<ons-row>
+			<ons-col>
+				<ons-button class="button--large button--outline" ng-click="menu.setMainPage('page/till.html', {closeMenu: true})">Cancel</ons-button>
+			</ons-col>
+			<ons-col>
+				&nbsp;
+			</ons-col>
+			<ons-col>
+				<ons-button class="button--large" ng-click="ctrl.closeTill(ctrl.amount)" ng-disabled="!form.$valid">Cash Up</ons-button>
+			</ons-col>
+		</ons-row>
+	</div>	
+	</form>
+</ons-page>

@@ -1,0 +1,104 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================== -->
+<!-- 			         Posterita POS                           -->
+<!-- ======================================================== -->
+
+<project name="posterita-pos" default="md5" basedir=".">
+	
+	<property name="build.dir" value="${basedir}/build"/>
+	<property name="dist.dir" value="${basedir}/dist/" />
+	
+	<!-- Cleans up the current build                                         -->
+    <!-- =================================================================== -->
+    <target name="clean">
+    	<echo message="=========== Cleaning project ===========" />
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+    </target>
+	
+	<target name="init" depends="clean">
+        <echo message="=========== Building project ===========" />
+        <tstamp />
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+	
+	<target name="version" depends="init">
+        <echo message="=========== Set version ===========" />
+        <tstamp>
+	   		<format property="TODAY_BUILT" pattern="yyyyMMddhhmmss" locale="en,UK"/>
+	  	</tstamp>
+		
+		<echo message="Built  = ${TODAY_BUILT}" />	
+        
+		<copy file="${basedir}/package.json" tofile="${build.dir}/package.json"
+		overwrite="true" filtering="yes">
+			<filterset>
+		      <filter token="VERSION" value="${TODAY_BUILT}"/>
+		    </filterset>
+		</copy>
+		
+		<copy file="${basedir}/js/version.js" tofile="${build.dir}/js/version.js"
+		overwrite="true" filtering="yes">
+			<filterset>
+		      <filter token="VERSION" value="${TODAY_BUILT}"/>
+		    </filterset>
+		</copy>
+	
+    </target>
+	
+	<target name="build" depends="version">
+	    <echo message="=========== Building project ===========" />
+		
+		<copy todir="${build.dir}">
+			<fileset dir="${basedir}" includes="icon.png, index.html, main.js, components/**, css/**, images/**, js/**, page/**" /> 
+		</copy>
+		
+	</target>
+	
+	<target name="asar" depends="build">
+		<echo message="=========== Packing project ===========" />
+		
+		<exec executable="asar" dir="${basedir}">
+			<arg line="pack ${build.dir} ${dist.dir}/posterita-pos.asar"/>
+		</exec>
+	</target>
+	
+	
+	<target name="md5" depends="asar">
+		<echo message="=========== Calculating checksum ===========" />
+		
+		<checksum file="${dist.dir}/posterita-pos.asar" property="CHECKSUM"/>
+		
+		<copy file="${basedir}/version.json" tofile="${dist.dir}/version.json"
+		overwrite="true" filtering="yes">
+			<filterset>
+		      <filter token="VERSION" value="${TODAY_BUILT}"/>
+			  <filter token="CHECKSUM" value="${CHECKSUM}"/>
+		    </filterset>
+		</copy>
+		
+		<echo message="${CHECKSUM}"/>
+		
+	</target>
+	
+</project>

@@ -1,0 +1,57 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-dialog var="signature-capture-dialog" style="width:660px;top:35%">
+
+    <ons-toolbar inline>
+      <div class="center">
+        <strong>Signature</strong>
+      </div>
+    </ons-toolbar>
+    
+   	<form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin: 20px; width: 620px;">
+   	
+	<div class="input-group">
+		<canvas id="signature-pad" class="signature-pad" width="620px" height="300px" style="background-color: rgb(227, 236, 247)"></canvas>	
+	</div>
+	
+	
+	<div class="input-group">
+		<ons-row>
+			<ons-col>
+				<ons-button class="button--large button--outline" ng-click="signature_capture_dialog.hide()">Cancel</ons-button>
+			</ons-col>
+			<ons-col>
+				&nbsp;
+			</ons-col>
+			
+			<ons-col>
+				<ons-button class="button--large button--outline" style="margin-left:-10px;" ng-click="clearSignature()">Reset</ons-button>
+			</ons-col>
+			
+			<ons-col>
+				<ons-button class="button--large" style="border:1px solid #4383cd;" ng-click="saveSignature()">OK</ons-button>
+			</ons-col>
+			
+		</ons-row>
+	</div>
+	
+	</form>
+    
+</ons-dialog>

@@ -1,0 +1,93 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/taffy.js"></script>		
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/ydn.db-dev.js"></script>
+		
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/cart.js"></script>
+		
+		<script type="text/javascript">
+		
+		$( function(){	
+			
+			APP.initializeDB().done( function ( msg ){
+				
+				console.log( msg );
+				
+				//pull data
+				APP.pullData().done( function ( data ){
+					
+					console.log( 'request data successfully' );
+								
+					//import data
+					APP.importData( data ).done( function ( msg ){
+						
+						console.log( msg );
+						
+						//init cache
+						APP.initCache().done( function ( msg ){
+							
+							console.log( msg );
+							
+							APP.setTerminalKey( 109 );
+							
+							testCart();
+							
+							
+						}).fail( function ( e ){
+							//failed to load cache
+							console.error( e );
+							
+						});
+						
+						
+					}).fail( function ( e ){
+						//failed to import data
+						console.error( e );
+						
+					});
+					
+					
+				}).fail( function ( e ){
+					// failed to pull data
+					console.error( e );
+					
+				});
+				
+				
+			}).fail( function ( e ){
+				// failed to initialize db
+				console.error( e );
+				
+			});
+			
+		} );
+		</script>
+	</head>
+	
+	<body>
+	test 123
+	</body>
+</html>

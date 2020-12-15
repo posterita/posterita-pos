@@ -1,0 +1,126 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-dialog var="about_dialog_global">
+ 
+	 <ons-toolbar inline>
+	     <div class="center">
+	       <strong>About POS</strong>
+	     </div>
+	 </ons-toolbar>
+	 
+	 <div class="form-default" style="margin: 20px;" ng-controller="AboutDialogController as ctrl">
+	 <ons-list>
+	 <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Business Name:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.business_name }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       
+       <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Store Name:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.store_name }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       
+       <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Terminal Name:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.terminal_name }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       
+       <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Server Endpoint:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.server_endpoint_url }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       
+       <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Version:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.version }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       
+       <ons-list-item>
+	       <ons-row>
+	       		<ons-col width="150px">
+	       			<label>Last Sync:</label>
+	       		</ons-col>
+	       		<ons-col>
+	        		<div>
+	        			{{ ctrl.last_updated }}
+	        		</div>
+	        	</ons-col>       		
+       		</ons-row>
+       </ons-list-item>
+       	 
+	 </ons-list>
+	 	
+	 	<div class="input-group">
+			<ons-row>
+				<ons-col>
+					&nbsp;
+				</ons-col>
+				<ons-col>
+					<ons-button class="button--large button--outline" ng-click="ctrl.closeDialog()">Ok</ons-button>
+				</ons-col>
+				<ons-col>
+					&nbsp;
+				</ons-col>
+			</ons-row>
+		</div>
+	 
+	 </div>
+	 
+</ons-dialog>

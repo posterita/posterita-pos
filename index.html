@@ -1,0 +1,117 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- monaca --> 
+<script src="components/loader.js"></script>
+<link rel="stylesheet" href="components/loader.css">
+<!-- -->
+
+<link rel="stylesheet" href="css/onsenui.css" />
+<link rel="stylesheet" href="css/onsen-css-components.css" />
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/angular-datepicker.css" />
+<link rel="stylesheet" href="css/angular-virtual-keyboard.css" />
+
+
+<script type="text/javascript" src="cordova.js"></script>
+
+<script src="js/angular/angular.js"></script>
+<script src="js/angular/ng-scroll-glue.min.js"></script>
+
+
+<script src="js/onsenui.js"></script>
+<script src="js/jquery.js"></script>
+
+<script src="js/taffy.js"></script>	
+<script src="js/ydn.db-dev.js"></script>
+
+<script src="js/moment.min.js"></script>
+<script src="js/angular/angular-moment.min.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/service.js"></script>
+<script src="js/buffer-service.js"></script>
+
+<script src="js/printing.js"></script>
+
+<script src="js/signature_pad.min.js"></script>
+<script src="js/jquery-pos.js"></script>
+
+
+<script src="js/posterita-pos.js"></script>
+
+<script src="js/angular-datepicker.js"></script>
+<script src="js/angular-virtual-keyboard.min.js"></script>
+<script src="js/angular-useragent-parser.min.js"></script>
+<script src="js/version.js"></script>
+
+<script src="js/order-synchronizer.js"></script>
+
+</head>
+
+<body ng-controller="AppController">
+
+	<ons-modal var="loading_modal">
+	  <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+	  <br>
+	  <br> Loading ...
+	</ons-modal>
+	
+	<ons-modal var="modal">
+	  <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+	  <br>
+	  <br> Please wait ...
+	</ons-modal>
+	
+	<ons-sliding-menu main-page="page/splash-screen.html" menu-page="page/menu.html" side="left" max-slide-distance="323px" var="menu" ng-device-backbutton="backButtonHandler()">
+	</ons-sliding-menu>
+
+	<script type="text/javascript">
+	
+		var src = "js/printing-implementation/";
+		
+		if(isCordovaApp)
+		{
+			src = src + "android-printer.js";
+		}
+		else if(isNodeApp)
+		{
+			src = src + "node-printer.js";
+		}
+		else
+		{
+			src = src + "mock-printer.js";
+		}
+		
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.src = src;
+		$("head").append(s);
+
+	</script>
+</body>
+</html>

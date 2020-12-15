@@ -1,0 +1,143 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/onsenui.css">
+    <link rel="stylesheet" href="css/onsen-css-components.css">
+    <link rel="stylesheet" href="login.css">
+
+    <script src="js/angular/angular.js"></script>
+    <script src="js/jquery.js"></script>
+    
+    <script src="js/onsenui.js"></script>
+    <script>
+      ons.bootstrap();
+      
+      function validateEmail(email) 
+      {
+          var re = /\S+@\S+\.\S+/;
+          return re.test(email);
+      }
+      
+      $(function(){
+    	   $('.login-button').click(function(e){
+    		   
+    		   var email = $('#email').val();
+    		   var password = $('#password').val();
+    		   
+    		   var error = null;
+    		   
+    		   if(!validateEmail(email)){
+    			   
+    			   ons.notification.alert({
+    	    			  message: 'Enter a valid e-mail',
+    	    			  // or messageHTML: '<div>Message in HTML</div>',
+    	    			  title: 'Login Error',
+    	    			  buttonLabel: 'OK',
+    	    			  animation: 'default', // or 'none'
+    	    			  // modifier: 'optional-modifier'
+    	    			  callback: function() {
+    	    			    // Alert button is closed!
+    	    			    $('#email').focus();
+    	    			  }
+    	    			});
+    			   
+    			   return;
+    		   }
+    		   
+    		   if(password == null || $.trim(password).length == 0){
+    			   
+    			   ons.notification.alert({
+ 	    			  message: 'Enter a valid password',
+ 	    			  // or messageHTML: '<div>Message in HTML</div>',
+ 	    			  title: 'Login Error',
+ 	    			  buttonLabel: 'OK',
+ 	    			  animation: 'default', // or 'none'
+ 	    			  // modifier: 'optional-modifier'
+ 	    			  callback: function() {
+ 	    			    // Alert button is closed!
+ 	    			    $('#password').focus();
+ 	    			  }
+ 	    			});
+ 			   
+ 			   		return;    
+ 			   
+    		   }
+    		  
+    		   /*
+    		  ons.notification.alert({
+    			  message: 'Message',
+    			  // or messageHTML: '<div>Message in HTML</div>',
+    			  title: 'Dialog Title',
+    			  buttonLabel: 'OK',
+    			  animation: 'default', // or 'none'
+    			  // modifier: 'optional-modifier'
+    			  callback: function() {
+    			    // Alert button is closed!
+    			  }
+    			});
+    		   */
+    		   
+    		   //window.location.href = "terminal.html";
+    		   
+    		   modal.show();
+    		   //setTimeout('modal.hide()', 2000);
+    		   
+    		   setTimeout(function(){
+    			   
+    			   window.location.href = "terminal.html";
+    			   
+    		   }, 2000);
+    		  
+    	  });    	  
+      });
+    </script>
+  </head>
+  <body>
+  
+  <ons-modal var="modal">
+	  <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+	  <br>
+	  <br> Please wait.
+	</ons-modal>
+
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Log In</div>
+        <div class="right"><ons-toolbar-button>Close</ons-toolbar-button></div>
+      </ons-toolbar>
+
+      <div class="login-form">
+
+        <input type="email" id="email" class="text-input--underbar" placeholder="Email" value="">
+        <input type="password" id="password" class="text-input--underbar" placeholder="Password" value="">
+        <br><br>
+        <ons-button modifier="large" class="login-button">Log In</ons-button>
+        <br><br>
+        <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+      </div>
+
+    </ons-page>
+
+  </body>
+</html>

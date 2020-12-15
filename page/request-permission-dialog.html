@@ -1,0 +1,115 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+ <ons-dialog ng-controller="RequestPermissionController as ctrl"> 
+	 <ons-toolbar inline>
+	     <div class="center">
+	       <strong>Permission Required</strong>
+	     </div>
+	 </ons-toolbar>
+	 
+	 <form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin: 20px;">
+	   	   
+	   <div class="input-group">
+			<label>Select a User</label>
+			<select ng-model="ctrl.user_id" id="user_id" class="select-large" autofocus >
+				<option ng-repeat="user in ctrl.userList" value="{{user.user_id}}">
+					{{user.username}}
+				</option>
+			</select>
+		</div>
+	
+		<div class="input-group">
+			<label>Enter PIN</label>
+			<input type="password" class="text-input-large" placeholder="PIN" value="" name="pin" ng-model="ctrl.pin" required="required" id="pin" ng-enter="form.$valid ? ok() : void(0)">
+		</div>
+		
+		<div class="numeric-keypad">
+			<table>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('1')">1</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('2')">2</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('3')">3</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('backspace')">
+							<ons-icon icon="ion-backspace"></ons-icon>
+						</ons-button>
+					</td>				
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('4')">4</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('5')">5</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('6')">6</ons-button>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('7')">7</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('8')">8</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('9')">9</ons-button>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('0')">0</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+			
+			 	
+		
+		<div class="input-group">
+			<ons-row>
+				<ons-col>
+					<ons-button class="button--large button--outline" ng-click="ctrl.cancel()">Cancel</ons-button>
+				</ons-col>
+				<ons-col>
+					&nbsp;
+				</ons-col>
+				<ons-col>
+					<ons-button class="button--large" ng-click="ctrl.ok()" ng-disabled="!form.$valid">OK</ons-button>
+				</ons-col>
+			</ons-row>
+		</div>
+	   
+	</form> 
+    
+ </ons-dialog>

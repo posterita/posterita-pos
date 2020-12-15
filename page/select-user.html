@@ -1,0 +1,88 @@
+<!-- select user page  -->
+<ons-page ng-controller="UserController as ctrl"> 
+
+<ons-toolbar fixed-style>
+  <div class="left"><ons-toolbar-button ng-click="ctrl.changeTerminal()">Change Terminal</ons-toolbar-button></div>
+  <div class="center">
+  {{ctrl.store.name}}, {{ctrl.terminal.name}}
+  </div>
+  <div class="right"><ons-toolbar-button onclick="closeApp()">Close</ons-toolbar-button></div>
+</ons-toolbar>
+
+<form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin-top: 20px;">
+
+	<div class="input-group">
+		<label>Select a User</label>
+		<select ng-model="ctrl.user_id" id="user_id" class="select-large" autofocus >
+			<option ng-repeat="user in ctrl.userList" value="{{user.user_id}}">
+				{{user.username}}
+			</option>
+		</select>
+	</div>
+	
+	<div class="input-group">
+		<label>Enter PIN</label>
+		<input type="password" class="text-input-large" placeholder="PIN" value="" name="pin" ng-model="ctrl.pin" required="required" id="pin" ng-enter="form.$valid ? logIn() : void(0)">
+	</div>
+	
+	<div class="numeric-keypad">
+		<table>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('1')">1</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('2')">2</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('3')">3</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('backspace')">
+						<ons-icon icon="ion-backspace"></ons-icon>
+					</ons-button>
+				</td>				
+			</tr>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('4')">4</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('5')">5</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('6')">6</ons-button>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('7')">7</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('8')">8</ons-button>
+				</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('9')">9</ons-button>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<ons-button class="button--large button--outline" ng-click="ctrl.press('0')">0</ons-button>
+				</td>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="input-group">
+		<ons-button modifier="large" ng-disabled="!form.$valid" ng-click="ctrl.logIn()">Log In</ons-button>
+	</div>
+	
+</form>
+
+</ons-page> 

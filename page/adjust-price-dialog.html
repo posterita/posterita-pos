@@ -1,0 +1,54 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+ <ons-dialog>
+ 
+	 <ons-toolbar inline>
+	     <div class="center">
+	       <strong>Adjust Line Total {{ (currentLine.price * currentLine.qty) | number : 2 }}</strong>
+	     </div>
+	 </ons-toolbar>
+	 
+	 <form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin: 20px;">
+	   
+	   <div class="input-group">
+		<label>Enter amount</label>
+		<input type="number" step="any" ng-model="adjust_price_dialog_amount" name="adjust_price_dialog_amount" id="adjust_price_dialog_amount" ng-enter="form.$valid ? adjustPrice( adjust_price_dialog_amount ) : void(0)" required>
+		<div ng-show="cash_dialog_error" class="error">
+		   {{cash_dialog_error_message}}
+		</div>
+	</div>
+	
+	<div class="input-group">
+		<ons-row>
+			<ons-col>
+				<ons-button class="button--large button--outline" ng-click="adjust_price_dialog.hide()">Cancel</ons-button>
+			</ons-col>
+			<ons-col>
+				&nbsp;
+			</ons-col>
+			<ons-col>
+				<ons-button class="button--large" ng-click="adjustPrice( adjust_price_dialog_amount )" ng-disabled="!form.$valid">OK</ons-button>
+			</ons-col>
+		</ons-row>
+	</div>
+	   
+	</form> 
+    
+ </ons-dialog>

@@ -1,0 +1,162 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-page ng-controller="TillController as ctrl">
+	<ons-toolbar fixed-style>
+		<div class="right">
+			<ons-toolbar-button onclick="logout()">
+			Logout
+			</ons-toolbar-button>
+		</div>
+		<div class="center">Open Till</div>
+	</ons-toolbar>
+
+	<form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin-top: 8px;">
+		<div class="input-group">
+			<label>Please fill in the fields below to open your POS.</label>
+		</div>
+		
+		<div class="input-group">
+			<label>Enter your starting amount *</label>
+			<input type="text" ng-model="ctrl.amount" name="amount" required="required" tabindex="1" ng-enter="form.$valid ? ctrl.openTill(ctrl.amount) : void(0)" autofocus>
+		</div>
+		
+		<!-- 
+		<div class="input-group">
+			<label>Choose your shift *</label>
+			<select ng-init="shift='wholeday'" name="shift" ng-model="shift" tabindex="2">
+				<option value="wholeday">Whole Day</option>
+				<option value="breakfast">Breakfast</option>
+				<option value="lunch">Lunch</option>
+				<option value="dinner">Dinner</option>
+				<option value="latenight">Late Night</option>
+			</select>
+		</div>
+		
+		<div class="input-group">
+			<label>Is this a special event?</label>
+			<ons-switch modifier="tappable" ng-model="isSpecialEvent" name="isSpecialEvent" tabindex="3"></ons-switch>
+		</div>
+		
+		<div class="input-group" ng-show="isSpecialEvent">
+			<label>Enter a name for the event</label>
+			<input type="text" step="any" ng-model="eventName" name="eventName">
+		</div>
+		
+		<div class="input-group">
+			<label>Enter your location</label>
+			<input type="text" step="any" ng-model="location" id="location" name="location" required tabindex="4">
+		</div>
+		
+		<div class="input-group">
+			<label>Choose the weather condition</label>
+			<select name="weather" ng-model="weather" tabindex="5">
+				<option value="">None</option>
+				<option value="sunny">Sunny</option>
+				<option value="cloudy">Cloudy</option>
+				<option value="rainy">Rainy</option>
+				<option value="snowy">Snowy</option>
+			</select>
+		</div>
+		
+		<div class="input-group">
+			<label>Enter the temperature</label>
+			<select name="temperature" ng-model="temperature" tabindex="6">
+				<option value="">None</option>
+				<option value="freezing">Freezing (-0F)</option>
+				<option value="cold">Cold (0-55F)</option>
+				<option value="warm">Warm (55-70F)</option>
+				<option value="hot">Hot (70-90f)</option>
+				<option value="extremelyhot">Extremely Hot (90+F)</option>
+			</select>
+		</div>
+		
+		<div class="input-group">
+			<label>Let your customers know you have arrived</label>
+			<textarea rows="2" placeholder="Compose message..." ng-model="message" name="message" tabindex="7"></textarea>
+		</div>
+		 -->
+		 <div class="numeric-keypad">
+			<table>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('1')">1</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('2')">2</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('3')">3</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('backspace')">
+							<ons-icon icon="ion-backspace"></ons-icon>
+						</ons-button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('4')">4</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('5')">5</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('6')">6</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('7')">7</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('8')">8</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('9')">9</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('0')">0</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('00')">00</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('.')">.</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="input-group">
+			<ons-button  modifier="large" ng-click="ctrl.openTill(ctrl.amount)" ng-disabled="!form.$valid" tabindex="8">Open</ons-button>
+		</div>
+	</form>
+</ons-page> 

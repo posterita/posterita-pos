@@ -1,0 +1,70 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-page ng-controller="TillController as ctrl"> 
+	<ons-toolbar fixed-style>
+		<div class="left">
+			<ons-toolbar-button ng-click="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon"></ons-icon>
+			</ons-toolbar-button>
+		</div>		
+		<div class="center">Till</div>
+	</ons-toolbar>
+	
+	<form novalidate="novalidate" autocomplete="off" name="form" class="form-default">
+	
+		<div class="input-group">
+			<h2>{{ ctrl.today | date:'fullDate' }}</h2>
+		</div>
+		
+		<div class="input-group">
+			<label>{{ctrl.terminalInfo}}</label>
+		</div>
+		
+		<div class="input-group">
+			<label>Opening Date : {{ ctrl.till.openingdate |  date:'medium' }}</label>
+		</div>
+		
+		<div class="input-group">
+			<label>Opening Amount : {{ ctrl.till.openingamt |  number:2 }}</label>
+		</div>
+		
+		<div class="input-group">
+			<label>Opened By : {{ ctrl.openby.username }}</label>
+		</div>
+		
+		<div class="input-group">&nbsp;</div>
+		
+		<div class="input-group">
+			<ons-row>
+				<ons-col>
+					<ons-button class="button--large" ng-click="ctrl.goToAdustTillPage()">Adjustments</ons-button>
+				</ons-col>
+				<ons-col>
+					&nbsp;
+				</ons-col>
+				<ons-col>
+					<ons-button class="button--large" ng-click="ctrl.goToCloseTillPage()">Cash Up</ons-button>
+				</ons-col>
+			</ons-row>
+		</div>
+	
+	</form>
+	
+</ons-page>

@@ -1,0 +1,162 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+ <ons-dialog var="open_item_dialog_global">
+ 
+	 <ons-toolbar inline>
+	     <div class="center">
+	       <strong>Open Item</strong>
+	     </div>
+	 </ons-toolbar>
+	 
+	 <form novalidate="novalidate" autocomplete="off" name="form" class="form-default" style="margin: 20px;" ng-controller="OpenItemDialogController as ctrl">
+	   
+	   <!-- 
+	   <div class="input-group">
+			<label>Name</label>
+			<input type="text" step="any" ng-model="open_item_name" name="open_item_name" id="open_item_name" disabled="disabled" required ng-virtual-keyboard="{}">
+		</div>
+		 -->
+		 
+	   <div class="input-group">
+			<ons-list>
+				<ons-list-item>
+	       		<ons-switch modifier="list-item" ng-model="ctrl.open_item_taxable"></ons-switch>
+	       		<label>Taxable</label>
+	       		</ons-list-item>
+			</ons-list>
+		</div>
+	   
+	   <div class="input-group">
+			<label>Enter Price</label>
+			<input type="text" ng-model="ctrl.open_item_price" name="open_item_price" id="open_item_price" required>
+			<div ng-show="ctrl.open_item_dialog_error" class="error">
+			   {{ctrl.open_item_dialog_error_message}}
+			</div>
+		</div>
+		
+		<div class="numeric-keypad">
+			<table>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('1')">1</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('2')">2</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('3')">3</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('backspace')">
+							<ons-icon icon="ion-backspace"></ons-icon>
+						</ons-button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('4')">4</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('5')">5</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('6')">6</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('7')">7</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('8')">8</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('9')">9</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('0')">0</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('00')">00</ons-button>
+					</td>
+					<td>
+						<ons-button class="button--large button--outline" ng-click="ctrl.press('.')">.</ons-button>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		 <!-- <div class="input-group">
+			 <ons-list>
+				<ons-list-item>
+		       		<ons-row>
+			       		<ons-col width="150px">
+			       			<label>Tax: </label>
+			       		</ons-col>
+			       		<ons-col>
+			        		<div>{{tax_name}}</div>
+			        	</ons-col>       		
+		       		</ons-row>
+	       		</ons-list-item>
+	       		
+	       		<ons-list-item>
+		       		<ons-row>
+			       		<ons-col width="150px">
+			       			<label>Rate: </label>
+			       		</ons-col>
+			       		<ons-col>
+			        		<div>{{tax_rate}}</div>
+			        	</ons-col>       		
+		       		</ons-row>
+	       		</ons-list-item>
+	       		
+			</ons-list>			 
+		 </div> -->
+		
+		
+	
+	<div class="input-group">
+		<ons-row>
+			<ons-col>
+				<ons-button class="button--large button--outline" ng-click="ctrl.closeDialog()">Cancel</ons-button>
+			</ons-col>
+			<ons-col>
+				&nbsp;
+			</ons-col>
+			<ons-col>
+				<ons-button class="button--large" ng-click="ctrl.addPrice( ctrl.open_item_name, ctrl.open_item_price, ctrl.open_item_taxable )" ng-disabled="!form.$valid">OK</ons-button>
+			</ons-col>
+		</ons-row>
+	</div>
+	   
+	</form> 
+    
+ </ons-dialog>

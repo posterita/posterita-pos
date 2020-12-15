@@ -1,0 +1,74 @@
+<!--
+ Copyright (C) 2020 Posterita Ltd
+ 
+ This file is part of Posterita POS.
+ 
+ Posterita POS is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Posterita POS is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Posterita POS.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<ons-page ng-controller="TillController as ctrl"> 
+	<ons-toolbar fixed-style>
+		<div class="left">
+			<ons-toolbar-button ng-click="menu.setMainPage('page/till.html', {closeMenu: true})">
+			<ons-icon icon="ion-ios-arrow-back"></ons-icon> Back
+			</ons-toolbar-button>
+		</div>		
+		<div class="center">Adjust Till</div>
+	</ons-toolbar>
+
+	<form novalidate="novalidate" autocomplete="off" name="form" class="form-default">
+	
+	<div class="input-group">
+		<div class="button-bar line-details-button-bar" style="width:280px;" ng-init="ctrl.action='payin';">
+          <div class="button-bar__item">
+            <input type="radio" name="navi-segment-a" ng-model="ctrl.action" value="payin" checked>
+            <button class="button-bar__button">Add</button>
+          </div>
+          <div class="button-bar__item">
+            <input type="radio" name="navi-segment-a" ng-model="ctrl.action" value="payout">
+            <button class="button-bar__button">Remove</button>
+          </div>
+        </div>
+	</div>
+	
+	<div class="input-group">
+		<label>{{ ctrl.action == 'payin' ? 'Amount to be added' : 'Amount to be removed'}} *</label>
+		<input type="text" ng-model="ctrl.amount" name="amount" required placeholder="{{ctrl.action == 'payin' ? 'Amount to be added' : 'Amount to be removed'}}" ng-virtual-keyboard="{}">
+	</div>
+	
+	<div class="input-group">
+		<label>Reason *</label>
+		<textarea ng-model="ctrl.reason" name="reason" required rows="5" placeholder="Enter a reason" ng-enter="form.$valid ? adjustTill(ctrl.action, ctrl.amount, ctrl.reason) : void(0)" ng-virtual-keyboard="{}"></textarea>
+	</div>
+	
+	<div class="input-group">
+		<ons-row>
+			<ons-col>
+				<ons-button class="button--large button--outline" ng-click="menu.setMainPage('page/till.html', {closeMenu: true})">Cancel</ons-button>
+			</ons-col>
+			<ons-col>
+				&nbsp;
+			</ons-col>
+			<ons-col>
+				<ons-button class="button--large" ng-click="ctrl.adjustTill(ctrl.action, ctrl.amount, ctrl.reason)" ng-disabled="!form.$valid">{{ ctrl.action == 'payin' ? 'Add' : 'Remove'}}</ons-button>
+			</ons-col>
+		</ons-row>
+	</div>
+	
+	<div class="input-group" style="height: 400px">
+		&nbsp;
+	</div>	
+	
+	</form>
+</ons-page>

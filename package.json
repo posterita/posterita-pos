@@ -1,0 +1,5 @@
+{
+  "name"    : "Posterita POS",
+  "version" : "@VERSION@",
+  "main"    : "main.js"
+}
