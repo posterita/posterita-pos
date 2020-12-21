@@ -10,5 +10,8 @@ https://my.posterita.com/posteritabo/sign-up.do
 
 # Demo
 
+Link: https://my.posterita.com/posteritapos/
 Email : support@posterita.com	
 Password: demo123
+User: Admin
+PIN: 1234
