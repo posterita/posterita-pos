@@ -25,7 +25,7 @@ APP.DOCUMENT_NO = 0;
 APP.TEMP_DOCUMENT_NO = 0;
 
 APP.loadSettings = function(){
-	this.SERVER_ENDPOINT_URL = localStorage.getItem('SERVER_ENDPOINT_URL') || "https://my.posterita.com/posterita-pos-bo" ;
+	this.SERVER_ENDPOINT_URL = localStorage.getItem('SERVER_ENDPOINT_URL') || "https://my.posterita.com/posteritabo" ;
 	this.ACCOUNT_KEY = localStorage.getItem('ACCOUNT_KEY');
 	
 	this.TERMINAL_KEY = localStorage.getItem('TERMINAL_KEY');
