@@ -6,3 +6,9 @@ Our free to download app was built with shop owners in mind. Start your store tr
 To create an account, please use the link below.
 
 https://my.posterita.com/posteritabo/sign-up.do
+
+
+# Demo
+
+Email : support@posterita.com	
+Password: demo123
